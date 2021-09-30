@@ -372,6 +372,15 @@ chown -R ${runAsUser}:${fsGroup} ."""
 
         def includes, excludes
 
+		echo "CONF1: ${config.stashIncludes}"
+		echo "CONF2: ${config.stashExcludes}"
+		
+		echo "CONF3: ${config.stashIncludes.workspace}"
+		echo "CONF4: ${config.stashExcludes.workspace}"
+		
+		echo "CONF5: ${config.stashIncludes.stashBack}"
+		echo "CONF6: ${config.stashExcludes.stashBack}"
+		
         if (stashBack) {
             includes = config.stashIncludes.stashBack ?: config.stashIncludes.workspace
             excludes = config.stashExcludes.stashBack ?: config.stashExcludes.workspace
