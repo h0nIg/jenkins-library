@@ -246,6 +246,44 @@ void call(Map parameters = [:], body) {
             .mixin(parameters, PARAMETER_KEYS)
             .addIfEmpty('uniqueId', UUID.randomUUID().toString())
             .use()
+        
+        Map config1 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .use()
+        Map config2 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .mixinGeneralConfig(script.commonPipelineEnvironment, GENERAL_CONFIG_KEYS)
+            .use()
+        Map config3 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .mixinGeneralConfig(script.commonPipelineEnvironment, GENERAL_CONFIG_KEYS)
+            .mixinStepConfig(script.commonPipelineEnvironment, STEP_CONFIG_KEYS)
+            .use()
+        Map config4 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .mixinGeneralConfig(script.commonPipelineEnvironment, GENERAL_CONFIG_KEYS)
+            .mixinStepConfig(script.commonPipelineEnvironment, STEP_CONFIG_KEYS)
+            .mixinStageConfig(script.commonPipelineEnvironment, stageName, STEP_CONFIG_KEYS)
+            .use()
+        Map config5 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .mixinGeneralConfig(script.commonPipelineEnvironment, GENERAL_CONFIG_KEYS)
+            .mixinStepConfig(script.commonPipelineEnvironment, STEP_CONFIG_KEYS)
+            .mixinStageConfig(script.commonPipelineEnvironment, stageName, STEP_CONFIG_KEYS)
+            .mixin(parameters, PARAMETER_KEYS)
+            .use()
+        Map config6 = ConfigurationHelper.newInstance(this)
+            .loadStepDefaults([:], stageName)
+            .mixinGeneralConfig(script.commonPipelineEnvironment, GENERAL_CONFIG_KEYS)
+            .mixinStepConfig(script.commonPipelineEnvironment, STEP_CONFIG_KEYS)
+            .use()
+
+		echo "CONFX1: ${config1}"
+		echo "CONFX2: ${config2}"
+		echo "CONFX3: ${config3}"
+		echo "CONFX4: ${config4}"
+		echo "CONFX5: ${config5}"
+		echo "CONFX6: ${config6}"
 
         utils.pushToSWA([
             step         : STEP_NAME,
