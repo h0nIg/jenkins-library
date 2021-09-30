@@ -372,6 +372,7 @@ chown -R ${runAsUser}:${fsGroup} ."""
 
         def includes, excludes
 
+		echo "CONF0: ${config}"
 		echo "CONF1: ${config.stashIncludes}"
 		echo "CONF2: ${config.stashExcludes}"
 		
